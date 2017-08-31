@@ -1,0 +1,22 @@
+
+// Allow plugins to declare Maven dependencies via build-extras.gradle.
+allprojects {
+    repositories {
+        mavenCentral();
+        jcenter();
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
+    }
+}
+android {
+    defaultConfig {
+        ndk { abiFilters 'armeabi', 'x86','arm64-v8a','armeabi-v7a','x86_64' }
+    }
+}
+dependencies {
+    compile 'com.aliyun.ams:alicloud-android-push:3.0.11@aar'
+    compile 'com.aliyun.ams:alicloud-android-utdid:1.1.5.3'
+    compile 'com.aliyun.ams:alicloud-android-ut:5.1.0'
+    compile 'com.aliyun.ams:alicloud-android-third-push:3.0.3@aar'
+}

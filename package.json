@@ -1,0 +1,35 @@
+{
+  "author": {
+    "name": "blank"
+  },
+  "bugs": {
+    "url": "https://git.oschina.net/BlankTrack/ChinaPicker/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-alipush",
+    "platforms": [
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "this is a notificationpush",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=5.0.0"
+    }
+  ],
+  "homepage": "https://git.oschina.net/BlankTrack/ChinaPicker/#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "license": "Apache-2.0",
+  "name": "cordova-plugin-alipush",
+  "repository": {
+    "type": "git",
+    "url": "git+https://git.oschina.net/BlankTrack/ChinaPicker.git"
+  },
+  "version": "1.0.537"
+}

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-alipush"
+    version="1.0.537"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0">
+    <name>PushPlugin</name>
+    <js-module name="PushPlugin" src="www/PushPlugin.js">
+        <clobbers target="PushPlugin" />
+    </js-module>
+    <preference name="MIID" default="" />
+    <preference name="MIKEY" default="" />
+    <preference name="APPKEY" />
+    <preference name="APPSECRET" />
+    <hook type="after_prepare" src="www/android_socket.js" />
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="PushPlugin">
+                <param name="android-package" value="com.blanktrack.alipush.PushPlugin" />
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <meta-data
+                android:name="com.blanktrack.miid"
+                android:value="$MIID\0" />
+            <meta-data
+                android:name="com.blanktrack.mikey"
+                android:value="$MIKEY\0" />
+            <meta-data
+                android:name="com.alibaba.app.appkey"
+                android:value="$APPKEY" />
+            <meta-data
+                android:name="com.alibaba.app.appsecret"
+                android:value="$APPSECRET" />
+
+            <receiver
+                android:name="com.blanktrack.alipush.MyMessageReceiver"
+                android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
+                <intent-filter>
+                    <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED" />
+                </intent-filter>
+                <intent-filter>
+                    <action android:name="com.alibaba.push2.action.NOTIFICATION_REMOVED" />
+                </intent-filter>
+                <intent-filter>
+                    <action android:name="com.alibaba.sdk.android.push.RECEIVE" />
+                </intent-filter>
+            </receiver>
+
+        </config-file>
+
+        <framework src="push.gradle" custom="true" type="gradleReference" />
+        <!--<framework src="com.aliyun.ams:alicloud-android-push:3.0.11@aar" />-->
+        <!--<framework src="com.aliyun.ams:alicloud-android-utdid:1.1.5.3" />-->
+        <!--<framework src="com.aliyun.ams:alicloud-android-ut:5.1.0" />-->
+        <!--<framework src="com.aliyun.ams:alicloud-android-third-push:3.0.3@aar" />-->
+
+        <source-file src="src/android/com/blanktrack/alipush/PushPlugin.java"
+            target-dir="src/com/blanktrack/alipush/" />
+        <source-file src="src/android/com/blanktrack/alipush/MyMessageReceiver.java"
+            target-dir="src/com/blanktrack/alipush/" />
+        <source-file src="src/android/com/blanktrack/alipush/MyApplication.java"
+            target-dir="src/com/blanktrack/alipush/" />
+    </platform>
+</plugin>
