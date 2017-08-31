@@ -3,7 +3,7 @@
     "name": "blank"
   },
   "bugs": {
-    "url": "https://git.oschina.net/BlankTrack/ChinaPicker/issues"
+    "url": "https://github.com/rxnh8255/AliPush/issues"
   },
   "bundleDependencies": false,
   "cordova": {
@@ -20,7 +20,7 @@
       "version": ">=5.0.0"
     }
   ],
-  "homepage": "https://git.oschina.net/BlankTrack/ChinaPicker/#readme",
+  "homepage": "https://github.com/rxnh8255/AliPush",
   "keywords": [
     "ecosystem:cordova",
     "cordova-android"
@@ -29,7 +29,7 @@
   "name": "cordova-plugin-alipush",
   "repository": {
     "type": "git",
-    "url": "git+https://git.oschina.net/BlankTrack/ChinaPicker.git"
+    "url": "git+https://github.com/rxnh8255/AliPush.git"
   },
-  "version": "1.0.537"
+  "version": "1.0.538"
 }
