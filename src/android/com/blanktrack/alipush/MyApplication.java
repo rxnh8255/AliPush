@@ -5,7 +5,7 @@ import android.app.Application;
 import static com.blanktrack.alipush.PushPlugin.initCloudChannel;
 
 /**
- * Created by Blank on 2017-08-28.
+ * Created by Blank on 2017-08
  */
 
 public class MyApplication extends Application {
