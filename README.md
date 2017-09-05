@@ -1,6 +1,6 @@
 #阿里云推送服务
 
-集成的阿里云的push服务.还没完善.有问题
+集成的阿里云的push服务.
 
 ## Installing the plugin
 
@@ -24,8 +24,33 @@ public void onCreate() {
 
 ## Using the plugin
 
-使用init绑定帐号,根据该帐号单独推送消息给用户
+1.使用init绑定帐号,根据该帐号单独推送消息给用户
+也可以用返回的设备ID绑定以后进行其他操作
 ```javascript
-window.PushPlugin.init({account:'test'})
+window.PushPlugin.init({account:'test'},function(deviceId){})
+```
+2.使用initstate查看SDK注册情况
+```javascript
+window.pushPlugin.registerNotify(function (res) {
+    console.log("ok");
+},function (err){
+    console.log(err);
+});
 ```
 
+3.使用registerNotify接收来通知的回调函数
+```
+//type说明
+* notify:   通知接收回调,title 标题,summary 内容,extraMap 通知额外参数
+* message:  消息接收回调,messageid 消息ID,title 消息标题,content 消息内容
+//未完待续...
+```
+
+```javascript
+window.pushPlugin.registerNotify(function (res) {
+    //res参数都带有一个type
+    console.log(res);
+},function(err){
+    console.log(err);
+});
+```

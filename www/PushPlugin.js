@@ -1,14 +1,6 @@
 
-var PushPlugin = function() {
+var PushPlugin = function() {};
 
-};
-
-/*
-*	success - success callback this is wrong
-*	fail - error callback
-*	options
-*		.account -  bindaccount name
-*/
 PushPlugin.prototype.init = function(options,success, fail) {
 	if (!options) {
 		options = {account:''};
@@ -18,6 +10,14 @@ PushPlugin.prototype.init = function(options,success, fail) {
 	};
 
 	return cordova.exec(success, fail, "PushPlugin", "init", [params]);
+};
+
+PushPlugin.prototype.initstate = function(success, fail) {
+	return cordova.exec(success, fail, "PushPlugin", "initstate", [{}]);
+};
+
+PushPlugin.prototype.registerNotify = function(success, fail) {
+	return cordova.exec(success, fail, "PushPlugin", "registerNotify", [{}]);
 };
 
 window.pushPlugin = new PushPlugin();
