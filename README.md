@@ -41,8 +41,10 @@ window.pushPlugin.registerNotify(function (res) {
 3.使用registerNotify接收来通知的回调函数
 ```
 //type说明
-* notify:   通知接收回调,title 标题,summary 内容,extraMap 通知额外参数
-* message:  消息接收回调,messageid 消息ID,title 消息标题,content 消息内容
+* notify:       通知接收回调,title 标题,summary 内容,extraMap 通知额外参数
+* notifyopen:   通知打开回调,title 标题,summary 内容,extraMap 通知额外参数
+* notifyremove: 通知删除回调,messageid 消息ID
+* message:      消息接收回调,messageid 消息ID,title 消息标题,content 消息内容
 //未完待续...
 ```
 

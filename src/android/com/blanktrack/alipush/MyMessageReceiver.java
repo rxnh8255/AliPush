@@ -24,8 +24,6 @@ public class MyMessageReceiver extends MessageReceiver {
     public static final String REC_TAG = "receiver";
     @Override
     public void onNotification(Context context, String title, String summary, Map<String, String> extraMap) {
-        Log.e("MyMessageReceiver", "Receive notification, title: " + title + ", summary: " + summary + ", extraMap: " + extraMap);
-
         JSONObject response = new JSONObject();
         try {
             response.put("type","notify");
@@ -39,7 +37,6 @@ public class MyMessageReceiver extends MessageReceiver {
     }
     @Override
     public void onMessage(Context context, CPushMessage cPushMessage) {
-        Log.e("MyMessageReceiver", "onMessage, messageId: " + cPushMessage.getMessageId() + ", title: " + cPushMessage.getTitle() + ", content:" + cPushMessage.getContent());
         JSONObject response = new JSONObject();
         try {
             response.put("type","message");
@@ -54,7 +51,16 @@ public class MyMessageReceiver extends MessageReceiver {
     }
     @Override
     public void onNotificationOpened(Context context, String title, String summary, String extraMap) {
-        Log.e("MyMessageReceiver", "onNotificationOpened, title: " + title + ", summary: " + summary + ", extraMap:" + extraMap);
+        JSONObject response = new JSONObject();
+        try {
+            response.put("type","notifyopen");
+            response.put("title",title);
+            response.put("summary",summary);
+            response.put("extraMap",extraMap);
+            sendEvent(response);
+        } catch (JSONException e) {
+            sendError(e.getMessage());
+        }
     }
     @Override
     protected void onNotificationClickedWithNoAction(Context context, String title, String summary, String extraMap) {
@@ -66,7 +72,14 @@ public class MyMessageReceiver extends MessageReceiver {
     }
     @Override
     protected void onNotificationRemoved(Context context, String messageId) {
-        Log.e("MyMessageReceiver", "onNotificationRemoved");
+        JSONObject response = new JSONObject();
+        try {
+            response.put("type","notifyremove");
+            response.put("messageId",messageId);
+            sendEvent(response);
+        } catch (JSONException e) {
+            sendError(e.getMessage());
+        }
     }
 
     private void sendEvent(JSONObject _json) {
