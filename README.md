@@ -27,11 +27,11 @@ public void onCreate() {
 1.使用init绑定帐号,根据该帐号单独推送消息给用户
 也可以用返回的设备ID绑定以后进行其他操作
 ```javascript
-window.PushPlugin.init({account:'test'},function(deviceId){})
+window.pushPlugin.init({account:'test'},function(deviceId){})
 ```
 2.使用initstate查看SDK注册情况
 ```javascript
-window.pushPlugin.registerNotify(function (res) {
+window.pushPlugin.initstate(function (res) {
     console.log("ok");
 },function (err){
     console.log(err);
