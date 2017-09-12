@@ -100,7 +100,20 @@ public class PushPlugin extends CordovaPlugin {
                     callbackContext.error(s);
                 }
             });
-        }else if("finish".equals(action)) {
+        }else if("unbind".equals(action)){
+            final CloudPushService pushService = PushServiceFactory.getCloudPushService();
+            pushService.unbindAccount(new CommonCallback(){
+                @Override
+                public void onSuccess(String s) {
+                    callbackContext.success();
+                }
+                @Override
+                public void onFailed(String s, String s1) {
+                    callbackContext.error(s);
+                }
+            });
+        }
+        else if("finish".equals(action)) {
             callbackContext.success();
         } else if ("initstate".equals(action)) {
             CloudPushService pushS = PushServiceFactory.getCloudPushService();
@@ -125,4 +138,3 @@ public class PushPlugin extends CordovaPlugin {
     }
 
 }
-

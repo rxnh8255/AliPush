@@ -56,3 +56,12 @@ window.pushPlugin.registerNotify(function (res) {
     console.log(err);
 });
 ```
+
+4.使用unbind解绑推送的帐号
+```javascript
+window.pushPlugin.unbind(function () {
+    console.log("ok");
+},function (err){
+    console.log(err);
+});
+```

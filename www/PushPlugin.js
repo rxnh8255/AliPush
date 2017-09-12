@@ -12,6 +12,10 @@ PushPlugin.prototype.init = function(options,success, fail) {
 	return cordova.exec(success, fail, "PushPlugin", "init", [params]);
 };
 
+PushPlugin.prototype.unbind = function(success, fail) {
+	return cordova.exec(success, fail, "PushPlugin", "unbind", [{}]);
+};
+
 PushPlugin.prototype.initstate = function(success, fail) {
 	return cordova.exec(success, fail, "PushPlugin", "initstate", [{}]);
 };
