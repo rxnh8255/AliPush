@@ -67,7 +67,6 @@ public class PushPlugin extends CordovaPlugin {
             callbackContext.error("SDK环境初始化失败");
         }else
         {
-
             PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
             result.setKeepCallback(true);
             callbackContext.sendPluginResult(result);
