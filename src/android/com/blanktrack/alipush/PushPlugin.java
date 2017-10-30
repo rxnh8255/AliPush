@@ -1,6 +1,7 @@
 package com.blanktrack.alipush;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
@@ -36,7 +37,6 @@ public class PushPlugin extends CordovaPlugin {
 
         PushServiceFactory.init(applicationContext);
         final CloudPushService pushService = PushServiceFactory.getCloudPushService();
-
         pushService.register(applicationContext, new CommonCallback() {
             @Override
             public void onSuccess(String response) {
@@ -67,10 +67,15 @@ public class PushPlugin extends CordovaPlugin {
             callbackContext.error("SDK环境初始化失败");
         }else
         {
+
             PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
             result.setKeepCallback(true);
             callbackContext.sendPluginResult(result);
         }
+    }
+
+    private Context getApplicationContext() {
+        return this.cordova.getActivity().getApplicationContext();
     }
 
     @Override
@@ -111,6 +116,11 @@ public class PushPlugin extends CordovaPlugin {
                     callbackContext.error(s);
                 }
             });
+        }
+        else if("getMessage".equals(action)) {
+            SharedPreferences preferences= getApplicationContext().getSharedPreferences("mynotifyMsg", Context.MODE_PRIVATE);
+            String name=preferences.getString("msg", "");
+            callbackContext.success(name);
         }
         else if("finish".equals(action)) {
             callbackContext.success();

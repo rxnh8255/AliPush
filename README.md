@@ -65,3 +65,12 @@ window.pushPlugin.unbind(function () {
     console.log(err);
 });
 ```
+
+5.打开后获取上一次推送的消息
+```javascript
+window.pushPlugin.getMessage(function (data) {
+    console.log(data);
+},function (err){
+    console.log(err);
+});
+```

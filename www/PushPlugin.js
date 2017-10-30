@@ -12,10 +12,6 @@ PushPlugin.prototype.init = function(options,success, fail) {
 	return cordova.exec(success, fail, "PushPlugin", "init", [params]);
 };
 
-PushPlugin.prototype.unbind = function(success, fail) {
-	return cordova.exec(success, fail, "PushPlugin", "unbind", [{}]);
-};
-
 PushPlugin.prototype.initstate = function(success, fail) {
 	return cordova.exec(success, fail, "PushPlugin", "initstate", [{}]);
 };
@@ -23,5 +19,9 @@ PushPlugin.prototype.initstate = function(success, fail) {
 PushPlugin.prototype.registerNotify = function(success, fail) {
 	return cordova.exec(success, fail, "PushPlugin", "registerNotify", [{}]);
 };
+PushPlugin.prototype.getMessage = function(success, fail) {
+	return cordova.exec(success, fail, "PushPlugin", "getMessage", [{}]);
+};
+
 
 window.pushPlugin = new PushPlugin();

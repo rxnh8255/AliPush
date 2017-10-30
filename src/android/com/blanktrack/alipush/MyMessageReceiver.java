@@ -1,6 +1,7 @@
 package com.blanktrack.alipush;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.alibaba.sdk.android.push.MessageReceiver;
@@ -24,12 +25,19 @@ public class MyMessageReceiver extends MessageReceiver {
     public static final String REC_TAG = "receiver";
     @Override
     public void onNotification(Context context, String title, String summary, Map<String, String> extraMap) {
+        Log.i(REC_TAG,"mynotity"+extraMap.toString());
         JSONObject response = new JSONObject();
         try {
             response.put("type","notify");
-            response.put("title",title);
             response.put("summary",summary);
+            response.put("title",title);
             response.put("extraMap",extraMap);
+
+            SharedPreferences preferences=context.getSharedPreferences("mynotifyMsg",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putString("msg", response.toString());
+            editor.commit();
+
             sendEvent(response);
         } catch (JSONException e) {
             sendError(e.getMessage());
