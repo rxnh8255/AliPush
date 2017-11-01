@@ -25,18 +25,12 @@ public class MyMessageReceiver extends MessageReceiver {
     public static final String REC_TAG = "receiver";
     @Override
     public void onNotification(Context context, String title, String summary, Map<String, String> extraMap) {
-        Log.i(REC_TAG,"mynotity"+extraMap.toString());
         JSONObject response = new JSONObject();
         try {
             response.put("type","notify");
             response.put("summary",summary);
             response.put("title",title);
             response.put("extraMap",extraMap);
-
-            SharedPreferences preferences=context.getSharedPreferences("mynotifyMsg",Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor=preferences.edit();
-            editor.putString("msg", response.toString());
-            editor.commit();
 
             sendEvent(response);
         } catch (JSONException e) {
@@ -59,12 +53,20 @@ public class MyMessageReceiver extends MessageReceiver {
     }
     @Override
     public void onNotificationOpened(Context context, String title, String summary, String extraMap) {
+        Log.i(REC_TAG,"mynotity"+extraMap);
+
         JSONObject response = new JSONObject();
         try {
             response.put("type","notifyopen");
             response.put("title",title);
             response.put("summary",summary);
             response.put("extraMap",extraMap);
+
+            SharedPreferences preferences=context.getSharedPreferences("mynotifyMsg",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putString("msg", response.toString());
+            editor.commit();
+
             sendEvent(response);
         } catch (JSONException e) {
             sendError(e.getMessage());

@@ -120,6 +120,12 @@ public class PushPlugin extends CordovaPlugin {
         else if("getMessage".equals(action)) {
             SharedPreferences preferences= getApplicationContext().getSharedPreferences("mynotifyMsg", Context.MODE_PRIVATE);
             String name=preferences.getString("msg", "");
+
+            //设空
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putString("msg", "");
+            editor.commit();
+
             callbackContext.success(name);
         }
         else if("finish".equals(action)) {
