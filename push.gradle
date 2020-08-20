@@ -19,4 +19,8 @@ dependencies {
     compile 'com.aliyun.ams:alicloud-android-utdid:1.1.5.3'
     compile 'com.aliyun.ams:alicloud-android-ut:5.1.0'
     compile 'com.aliyun.ams:alicloud-android-third-push:3.0.3@aar'
+
+    compile 'cn.testin.analysis:testin-data:latest.integration'
+    compile 'cn.testin.analysis:bugout:latest.integration'
+    compile 'cn.testin.analysis:bugout-ndk:latest.integration'
 }
